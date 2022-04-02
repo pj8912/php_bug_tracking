@@ -21,15 +21,15 @@
 	</nav>
 
 	<div class="container">
-		<div class="card  m-auto col-md-4 col-xs-4 mt-5">
+		<div class="card  m-auto col-md-4 col-xs-4 mt-5 rounded-0">
 
-			<p class="card-header text-center text-dark h2">Bug Tracker</p>
+			<p class="card-header p-2 bg-white text-center text-dark h2">Bug Tracker</p>
 			<div class="card-body">
 				<p class="text-center mt-4 text-secondary h5">Login</p>
 
 				<form action="" method="post">
 					<div class="mb-2">
-						<input type="text" name="uname" placeholder="Username" class="form-control">
+						<input type="text" name="uname" placeholder="Name" class="form-control">
 					</div>
 					<div class="mb-2">
 						<input type="password" name="pwd" placeholder="Password" class="form-control">
@@ -42,7 +42,7 @@
 					</div>
 				</form>
 				<div class="mt-5 text-center">
-					Don't have an account ? <a href="#">Sign Up</a>
+					Don't have an account ? <a href="user/signup.php">Sign Up</a>
 				</div>
 			</div>
 		</div>
