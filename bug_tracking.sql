@@ -48,12 +48,18 @@ CREATE TABLE users(
 create table employees(
 	e_id int auto_increment primary key not null,
 	e_name varchar(100) not null ,
-	job_type varchar(200) not null,
+	role varchar(200) not null,
 	email varchar(200) not null,
 	phone varhcar(20) not null,
 	on_date datetime default current_timestamp
 );
 
+
+create table roles(
+	r_id int auto_increment primary key not null,
+	role_name varchar(300) not null,
+	on_date datetime default current_timestamp
+);
 
 
 
