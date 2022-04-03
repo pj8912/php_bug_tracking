@@ -13,6 +13,8 @@ class Employee
 
     private $table = "employees";
 
+    public $eid;
+
 
     public function createEmployee()
     {
@@ -35,6 +37,7 @@ class Employee
         $stmt->execute();
     }
 
+    //view all employee
     public function readAll()
     {
         $sql = "SELECT  * FROM employees";
@@ -43,9 +46,11 @@ class Employee
         return $stmt;
     }
 
-    public function deleteEmployee(){
+    public function deleteEmployee()
+    {
         $sql = "DELETE FROM {$this->table} WHERE e_id = :e_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':e_id', $this->eid);
+        $stmt->execute();
     }
-
-
 }
