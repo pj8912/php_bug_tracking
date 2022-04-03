@@ -1,3 +1,4 @@
+<?php session_start();?>
 <html>
 
 <head>
@@ -18,6 +19,11 @@
 		<div class="container-fluid">
 			<a href="#" class="nav-brand p-1 text-center m-auto">Bug Tracker </a>
 		</div>
+		<?php
+		if(isset($_SESSION['u_id'])){
+			echo '<a href="user/logout.php" class="p-2">logout</a>';
+		}
+		?>
 	</nav>
 
 	<div class="container">
@@ -27,16 +33,17 @@
 			<div class="card-body">
 				<p class="text-center mt-4 text-secondary h5">Login</p>
 
-				<form action="" method="post">
+				<form action="user/login.php" method="post">
 					<div class="mb-2">
-						<input type="text" name="uname" placeholder="Name" class="form-control">
+
+						<input type="email" name="email" placeholder="Email" class="form-control">
 					</div>
 					<div class="mb-2">
 						<input type="password" name="pwd" placeholder="Password" class="form-control">
 
 					</div>
 					<div class="d-grid gap-2">
-						<button type="submit" class="btn btn-primary ">
+						<button type="submit" name="lbtn" class="btn btn-primary ">
 							login
 						</button>
 					</div>
