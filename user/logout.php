@@ -1,12 +1,13 @@
 <?php
 session_start();
-include '../config/db.php';
+// include '../config/db.php';
 
 if (isset($_SESSION['u_id'])) {
 
-    $sql = "INSERT INTO users(last_seen) VALUES(NOW()) WHERE user_id = {$_SESSION['u_id']}";
-    mysqli_query($conn, $sql);
+    $conn = mysqli_connect('localhost', 'root', '', 'php_bug_tracking');
 
+    $sql = "UPDATE users SET last_seen = NOW() WHERE user_id = {$_SESSION['u_id']}";
+    mysqli_query($conn, $sql);
 
     session_unset();
 
