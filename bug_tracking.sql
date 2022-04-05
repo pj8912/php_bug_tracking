@@ -57,3 +57,13 @@ create table roles(
 	role_name varchar(300) not null,
 	on_date datetime default current_timestamp
 );
+
+create table contacts(
+	id int AUTO_INCREMENT PRIMARY KEY not null,
+	name varchar(100) not null,
+	company varchar(300) not null,
+    email varchar(300) not null,
+    mobile varchar(12) not null,
+    message text not null,
+    on_date datetime default CURRENT_TIMESTAMP
+);

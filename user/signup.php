@@ -16,7 +16,7 @@
     <div class="contaniner">
 
 
-        <div class="card card-body col-md-4 m-auto col-xs-6 mt-5">
+        <div class="card card-body col-md-4 m-auto col-xs-4 mt-5">
 
             <h4 class="text-center">Bug tracker</h4>
 

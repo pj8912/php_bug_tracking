@@ -4,19 +4,19 @@
 class Database
 {
     private $host = "localhost", $uname = "root", $pwd = "", $dbname = "php_bug_tracking";
+    private $conn;
 
-    private $pdo;
 
     public function connect()
     {
         try {
 
-            $this->pdo = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->dbname, $this->uname, $this->pwd);
-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $this->pdo;
+            $this->conn = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->dbname, $this->uname, $this->pwd);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             echo "DB_ERR:" . $e->getMessage();
         }
+        return $this->conn;
     }
 }
 
