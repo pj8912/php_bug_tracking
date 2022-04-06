@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include 'includes/header.php';
 include 'includes/footer.php';
 
@@ -14,12 +14,14 @@ include 'includes/footer.php';
     .ref {
         cursor: pointer;
     }
-    a{
+
+    a {
         text-decoration: none;
     }
 </style>
 
 <?php main_header('Contact Us'); ?>
+
 <div class="container">
     <div class="card card-body col-md-4 rounded-0" id="cards">
         <form action="" method="post">
@@ -39,7 +41,6 @@ include 'includes/footer.php';
             </div>
             <div class="mb-2">
                 <textarea name="message" placeholder="Message" cols="30" class="form-control" rows="4"></textarea>
-                <!-- <input type="text" name="message" placeholder="Message" class="form-control"> -->
             </div>
             <div class="d-grid gap-2">
 
@@ -53,13 +54,12 @@ include 'includes/footer.php';
         <p class="text-center mt-1 text-secondary ref" onclick="reset_game()" id="refresh">Refresh</p>
     </div>
 </div>
+
 <script>
     function reset_game() {
         location.reload();
         document.getElementById('input').value = '';
     }
-
-
 </script>
 
 <?php
@@ -81,16 +81,15 @@ if (isset($_POST['ubtn'])) {
     $contact->email = $email;
     $contact->mobile = $mobile;
     $contact->message = $message;
-    if($contact->createContact()){
+    if ($contact->createContact()) {
         header('location: index.php');
         exit();
-    }
-    else{
+    } else {
         header('location: contactus.php?err');
         exit();
     }
-    
-
 }
 ?>
+
+
 <?php main_footer(); ?>
