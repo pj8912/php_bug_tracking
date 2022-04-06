@@ -25,7 +25,7 @@ CREATE TABLE  tickets(
 	ticket_priority varchar(300), -- priority: immediate, high, low, medium
 	startDate varchar(200),
 	endDate varchar(200),
-	total_time varchar(200)
+	total_time varchar(200),
 	FOREIGN KEY (project_id) REFERENCES projects(project_id),
 	ticket_created_at datetime default current_timestamp
 
@@ -33,11 +33,11 @@ CREATE TABLE  tickets(
 
 
 CREATE TABLE users(
-	user_id auto_increment primary key not null,
+	user_id int AUTO_INCREMENT primary key not null,
 	user_name varchar(256) ,
 	user_mobile varchar(20) ,
 	email varchar(256) not null,
-	user_pwd varchar(256) not null
+	user_pwd varchar(256) not null,
 	last_seen datetime default current_timestamp
 );
 
