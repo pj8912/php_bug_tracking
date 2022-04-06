@@ -9,7 +9,7 @@ CREATE TABLE projects(
 	frontend text not null,
 	backend text not null,
 	client_name varchar(200) not null,
-	created_at datetime default curreny_timestamp
+	created_at datetime default current_timestamp
 );
 
 -- a bug or a ticket
