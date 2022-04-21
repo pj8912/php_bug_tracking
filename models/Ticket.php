@@ -14,7 +14,7 @@ class Ticket
     public $ticket_name,
         $project_id,
         $ticket_type,
-        $ticket_desctiption,
+        $ticket_description,
         $ticket_assigned_to,
         $ticket_status,
         $ticket_priority;

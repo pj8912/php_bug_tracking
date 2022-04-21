@@ -123,6 +123,27 @@
 <?php
 
 if (isset($_SESSION['u_id'])) {
+	echo '<ul class="list-group mt-5 col-md-4 m-auto">
+		<li class="list-group-item">
+			<a href="' . URL . 'employee/employees.php">View Employees</a>
+		</li>
+		<li class="list-group-item">
+			<a href="' . URL . '/ticket/tickets.php">View Tickets</a>
+		</li>
+		<li class="list-group-item">
+			<a href="' . URL . '/project/projects.php">View Projects</a>
+		</li>
+		<li class="list-group-item">
+			<a href="' . URL . '/employee/index.php">Add Employee</a>
+		</li>
+		<li class="list-group-item">
+			<a href="' . URL . '/project/index.php">Add project </a>
+		</li>
+		<li class="list-group-item">
+			<a href="' . URL . '/ticket/index.php">Add ticket </a>
+		</li>
+	
+	</ul>';
 }
 ?>
 
