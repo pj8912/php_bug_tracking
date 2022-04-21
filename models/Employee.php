@@ -9,18 +9,17 @@ class Employee
     {
         $this->conn = $db;
     }
-    public $name, $role, $email, $phone;
+    public $name, $role, $email, $phone, $description;
 
-    private $table = "employees";
+    private $table = "php_bug_tracking.employees";
 
     public $eid;
 
 
     public function createEmployee()
     {
-        $sql = "INSERT INTO {$this->table}(e_name, role, email, phone_number)
-        VALUES(:e_name, :role, :email, :phone_number)";
-
+        $sql = "INSERT INTO {$this->table}(e_name,e_roles,e_description,e_email,e_phone) 
+        VALUES(:e_name,:e_roles,:e_description	,:e_email,:e_phone	)";
         $stmt = $this->conn->prepare($sql);
 
 
@@ -28,11 +27,13 @@ class Employee
         $this->role = htmlspecialchars(strip_tags($this->role));
         $this->email = htmlspecialchars(strip_tags($this->email));
         $this->phone = htmlspecialchars(strip_tags($this->phone));
+        $this->description = htmlspecialchars(strip_tags($this->description));
 
         $stmt->bindParam(':e_name', $this->name);
-        $stmt->bindParam(':role', $this->role);
-        $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':phone_number', $this->phone);
+        $stmt->bindParam(':e_roles', $this->role);
+        $stmt->bindParam(':e_description', $this->description);
+        $stmt->bindParam(':e_email', $this->email);
+        $stmt->bindParam(':e_phone', $this->phone);
         // $stmt->execute();
         if ($stmt->execute()) {
             return true;

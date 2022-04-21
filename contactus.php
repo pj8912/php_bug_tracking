@@ -24,7 +24,7 @@ include 'includes/footer.php';
 
 <div class="container">
     <div class="card card-body col-md-4 rounded-0" id="cards">
-        <form action="" method="post">
+        <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
             <p class="h5">Contact Us</p>
             <hr>
             <div class="mb-2">
