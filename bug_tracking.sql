@@ -9,7 +9,8 @@ CREATE TABLE projects(
 	frontend text not null,
 	backend text not null,
 	client_name varchar(200) not null,
-	created_at datetime default current_timestamp
+	created_at datetime default current_timestamp,
+	updated_at datetime default current_timestamp
 );
 
 -- a bug or a ticket
@@ -67,4 +68,26 @@ create table contacts(
     mobile varchar(12) not null,
     message text not null,
     on_date datetime default CURRENT_TIMESTAMP
+);
+
+create table types(
+
+	t_id int AUTO_INCREMENT primary key not null,
+	ticket_type varchar(100) not null,
+	created_at datetime default CURRENT_TIMESTAMP
+);
+
+create table statuses(
+
+	s_id int AUTO_INCREMENT primary key not null,
+	ticket_status varchar(100) not null,
+	created_at datetime default CURRENT_TIMESTAMP
+
+);
+
+create table priorities(
+
+	p_id int AUTO_INCREMENT primary key not null,
+	ticket_priority varchar(100) not null,
+	created_at datetime default CURRENT_TIMESTAMP
 );

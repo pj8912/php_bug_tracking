@@ -41,14 +41,8 @@ main_header('Add Employee');
             </div>
         </form>
     </div>
-    <button onclick="reset_game()" type="button">refresh</button>
 </div>
-<script>
-    function reset_game() {
-        location.reload();
-        document.getElementById('input').value = '';
-    }
-</script>
+
 
 <?php
 

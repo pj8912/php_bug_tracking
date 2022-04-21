@@ -131,7 +131,7 @@
 <?php
 
 if (isset($_SESSION['u_id'])) {
-	echo '<ul class="list-group mt-5 col-md-4 m-auto">
+	echo '<ul class="list-group mt-5 col-md-4 m-auto " style="font-size:20px;text-align:center;font-family:arial;padding:5px">
 		<li class="list-group-item">
 			<a href="' . URL . 'employee/employees.php">View Employees</a>
 		</li>
