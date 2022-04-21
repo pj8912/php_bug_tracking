@@ -27,7 +27,8 @@ CREATE TABLE  tickets(
 	endDate varchar(200),
 	total_time varchar(200),
 	FOREIGN KEY (project_id) REFERENCES projects(project_id),
-	ticket_created_at datetime default current_timestamp
+	ticket_created_at datetime default current_timestamp,
+	updated_at datetime default current_timestamp
 
 );
 
