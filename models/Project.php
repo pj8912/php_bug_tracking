@@ -85,9 +85,6 @@ class Project
         $sql = "SELECT project_title, type, manager, frontend, backend, client_name, description FROM {$this->table}";
         $stmt = $this->conn->query($sql);
 
-        //set project_id
-        // $stmt->bindParam(':project_id', $this->project_id); 
-
         $stmt->execute();
     }
 
@@ -105,6 +102,13 @@ class Project
 		    WHERE project_id  = :project_id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':project_id', $this->project_id);
+        $stmt->execute();
+        return $stmt;
+    }
+    public function getProjectTitles()
+    {
+        $sql = "SELECT project_title  FROM {$this->table}";
+        $stmt= $this->conn->query($sql);
         $stmt->execute();
         return $stmt;
     }
