@@ -7,4 +7,3 @@ $db = new Database();
 $db = $db->connect();
 $project = new Project($db);
 $result = $project->getProjectTitles();
-?>

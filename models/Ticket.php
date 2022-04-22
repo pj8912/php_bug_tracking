@@ -26,10 +26,10 @@ class Ticket
     {
         $sql = "INSERT INTO {$this->table}(ticket_name, 
         project_id, ticket_type, ticket_description,
-        ticket_assigned_to, ticket_status, ticket_priority) 
+        ticket_assigned_to, ticket_status, ticket_priority, startDate, endDate) 
         VALUES(:ticket_name, 
        :project_id, :ticket_type, :ticket_description,
-        :ticket_assigned_to, :ticket_status, :ticket_priority)";
+        :ticket_assigned_to, :ticket_status, :ticket_priority, :startDate, :endDate)";
 
 
         $stmt = $this->conn->prepare($sql);
@@ -40,6 +40,8 @@ class Ticket
         $stmt->bindParam(':ticket_assigned_to', $this->ticket_assigned_to);
         $stmt->bindParam(':ticket_status', $this->ticket_status);
         $stmt->bindParam(':ticket_priority', $this->ticket_priority);
+        $stmt->bindParam(':startDate', $this->startDate);
+        $stmt->bindParam(':endDate', $this->endDate);
 
 
         $stmt->execute();

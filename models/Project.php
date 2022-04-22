@@ -107,7 +107,7 @@ class Project
     }
     public function getProjectTitles()
     {
-        $sql = "SELECT project_title  FROM {$this->table}";
+        $sql = "SELECT project_id, project_title  FROM {$this->table}";
         $stmt= $this->conn->query($sql);
         $stmt->execute();
         return $stmt;
