@@ -12,7 +12,7 @@ class Ticket
     private $table = "tickets";
 
     public $ticket_name,
-        $project_name,
+        $project_name, //name not id
         $ticket_type,
         $ticket_description,
         $ticket_assigned_to,
