@@ -26,7 +26,7 @@ require '../includes/footer.php';
                     $num = $result->rowCount();
                     if ($num > 0) {
                         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                            echo '<option value="' . $row['project_id'] . '">' . $row['project_title'] . '</option>';
+                            echo '<option value="' . $row['project_title'] . '">' . $row['project_title'] . '</option>';
                         }
                     } else {
                         echo '<option>No Project created</option>';
@@ -42,7 +42,7 @@ require '../includes/footer.php';
                     $num = mysqli_num_rows($result);
                     if ($num > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
-                            echo '<option>' . $row['ticket_type'] . '</option>';
+                            echo '<option value="' . $row['ticket_type'] . '">' . $row['ticket_type'] . '</option>';
                         }
                     } else {
                         echo 'No types available';
@@ -64,7 +64,7 @@ require '../includes/footer.php';
                     $num = mysqli_num_rows($result);
                     if ($num > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
-                            echo '<option value="' . $row['e_id'] . '">' . $row['e_name'] . '</option>';
+                            echo '<option value="' . $row['e_name'] . '">' . $row['e_name'] . '</option>';
                         }
                     } else {
                         echo 'No Devs available';
@@ -81,7 +81,7 @@ require '../includes/footer.php';
                     $num = mysqli_num_rows($result);
                     if ($num > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
-                            echo '<option value="' . $row['s_id'] . '">' . $row['ticket_status'] . '</option>';
+                            echo '<option value="' . $row['ticket_status'] . '">' . $row['ticket_status'] . '</option>';
                         }
                     } else {
                         echo 'No status available';
@@ -98,7 +98,7 @@ require '../includes/footer.php';
                     $num = mysqli_num_rows($result);
                     if ($num > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
-                            echo '<option value="'.$row['p_id'].'">' . $row['ticket_priority'] . '</option>';
+                            echo '<option value="'.$row['ticket_priority'].'">' . $row['ticket_priority'] . '</option>';
                         }
                     } else {
                         echo 'No Priority available';

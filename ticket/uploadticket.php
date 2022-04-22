@@ -11,7 +11,7 @@ $ticket = new Ticket($db);
 
 if (isset($_POST['tbtn'])) {
     $ticket->ticket_name  = $_POST['t_name'];
-    $ticket->project_id = $_POST['project_id'];
+    $ticket->project_name = $_POST['project_id'];
     $ticket->ticket_type = $_POST['t_type'];
     $ticket->ticket_description = $_POST['desc'];
     $ticket->ticket_assigned_to = $_POST['assinged_to'];

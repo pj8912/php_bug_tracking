@@ -82,10 +82,10 @@ class Project
 
     public function readAll()
     {
-        $sql = "SELECT project_title, type, manager, frontend, backend, client_name, description FROM {$this->table}";
+        $sql = "SELECT project_title,project_type,project_description,project_manager,frontend,backend,client_name FROM {$this->table}";
         $stmt = $this->conn->query($sql);
-
         $stmt->execute();
+        return $stmt;
     }
 
     public function deleteProject()
@@ -109,6 +109,14 @@ class Project
     {
         $sql = "SELECT project_id, project_title  FROM {$this->table}";
         $stmt= $this->conn->query($sql);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    public function getProjectNameById(){
+        $sql = "SELECT project_title FROM {$this->table} where project_id = :project_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':project_id', $this->project_id);
         $stmt->execute();
         return $stmt;
     }

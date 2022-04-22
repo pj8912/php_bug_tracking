@@ -12,7 +12,7 @@ class Ticket
     private $table = "tickets";
 
     public $ticket_name,
-        $project_id,
+        $project_name,
         $ticket_type,
         $ticket_description,
         $ticket_assigned_to,
@@ -25,16 +25,16 @@ class Ticket
     public function createTicket()
     {
         $sql = "INSERT INTO {$this->table}(ticket_name, 
-        project_id, ticket_type, ticket_description,
+        project_name, ticket_type, ticket_description,
         ticket_assigned_to, ticket_status, ticket_priority, startDate, endDate) 
         VALUES(:ticket_name, 
-       :project_id, :ticket_type, :ticket_description,
+       :project_name, :ticket_type, :ticket_description,
         :ticket_assigned_to, :ticket_status, :ticket_priority, :startDate, :endDate)";
 
 
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':ticket_name', $this->ticket_name);
-        $stmt->bindParam(':project_id', $this->project_id);
+        $stmt->bindParam(':project_name', $this->project_name);
         $stmt->bindParam(':ticket_type', $this->ticket_type);
         $stmt->bindParam(':ticket_description', $this->ticket_description);
         $stmt->bindParam(':ticket_assigned_to', $this->ticket_assigned_to);
