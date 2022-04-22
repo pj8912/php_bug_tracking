@@ -51,11 +51,12 @@ class Employee
         $sql = "SELECT  * FROM employees";
         $stmt = $this->conn->query($sql);
         $stmt->execute();
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        $this->name = $row['e_name'];
-        $this->role = $row['role'];
-        $this->email = $row['email'];
-        $this->phone = $row['phone_number'];
+        return $stmt;
+        // $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        // $this->name = $row['e_name'];
+        // $this->role = $row['role'];
+        // $this->email = $row['email'];
+        // $this->phone = $row['phone_number'];
     }
 
     public function deleteEmployee()
