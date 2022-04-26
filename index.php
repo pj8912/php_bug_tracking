@@ -131,33 +131,60 @@
 <?php
 
 if (isset($_SESSION['u_id'])) {
-	echo '<ul class="list-group mt-5 col-md-4 m-auto " style="font-size:20px;text-align:center;font-family:arial;padding:5px">
-		<li class="list-group-item">
-			<a href="' . URL . '/employee/employees.php">View Employees</a>
-		</li>
-		<li class="list-group-item">
-			<a href="' . URL . '/ticket/tickets.php">View Tickets</a>
-		</li>
-		<li class="list-group-item">
-			<a href="' . URL . '/project/projects.php">View Projects</a>
-		</li>
-		<li class="list-group-item">
-			<a href="' . URL . '/employee/index.php">Add Employee</a>
-		</li>
-		<li class="list-group-item">
-			<a href="' . URL . '/project/index.php">Add project </a>
-		</li>
-		<li class="list-group-item">
-			<a href="' . URL . '/ticket/index.php">Add ticket </a>
-		</li>
+
+	echo '
 	
-	</ul>';
+	<div class="row mt-5 text-center p-4">
+	<div class="col-md-4 m-2 card card-body">
+		<a href="' . URL . '/employee/employees.php">View Employees</a>
+	</div>
+	<div class="col-md-4 m-2 card card-body">
+		<a href="' . URL . '/ticket/tickets.php">View Tickets</a>
+	</div>
+	<div class="col-md-4 m-2 card card-body">
+		<a href="' . URL . '/project/projects.php">View Projects</a>
+	</div>
+	<div class="col-md-4 m-2 card card-body">
+		<a href="' . URL . '/employee/index.php">Add Employee</a>
+	</div>
+	<div class="col-md-4 m-2 card card-body">
+		<a href="' . URL . '/project/index.php">Add project </a>
+	</div>
+	<div class="col-md-4 m-2 card card-body">
+		<a href="' . URL . '/ticket/index.php">Add ticket </a>
+	</div>
+</div>
+
+	';
+	// echo '<ul class="list-group mt-5 col-md-4 m-auto " style="font-size:20px;text-align:center;font-family:arial;padding:5px">
+	// 	<li class="list-group-item">
+	// 		<a href="' . URL . '/employee/employees.php">View Employees</a>
+	// 	</li>
+	// 	<li class="list-group-item">
+	// 		<a href="' . URL . '/ticket/tickets.php">View Tickets</a>
+	// 	</li>
+	// 	<li class="list-group-item">
+	// 		<a href="' . URL . '/project/projects.php">View Projects</a>
+	// 	</li>
+	// 	<li class="list-group-item">
+	// 		<a href="' . URL . '/employee/index.php">Add Employee</a>
+	// 	</li>
+	// 	<li class="list-group-item">
+	// 		<a href="' . URL . '/project/index.php">Add project </a>
+	// 	</li>
+	// 	<li class="list-group-item">
+	// 		<a href="' . URL . '/ticket/index.php">Add ticket </a>
+	// 	</li>
+
+	// </ul>';
 }
 ?>
+
 
 
 </body>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 
 </html>
