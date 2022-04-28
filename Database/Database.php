@@ -4,7 +4,7 @@
 class Database
 {
     private $host = "localhost", $uname = "root", $pwd = "", $dbname = "php_bug_tracking";
-    private $conn;
+    protected $conn;
 
 
     public function connect()
