@@ -12,7 +12,17 @@ require '../includes/footer.php';
 
 <div class="container">
     <div class="mt-5">
-        <h4>Projects </h4>
+
+        <div class="container " style="display:flex;flex-direction:row;">
+
+            <h4 class="m-2">Projects </h4>
+            <?php
+            require '../config/config.php';
+            ?>
+            <a href="<?php echo URL; ?>/project/" class="btn btn-success m-2">
+                + Add
+            </a>
+        </div>
         <?php
         require '../Database/Database.php';
         require '../models/Project.php';

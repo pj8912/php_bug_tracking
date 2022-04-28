@@ -12,7 +12,16 @@ require '../includes/footer.php';
 
 <div class="container">
     <div class="mt-5">
-        <h4>Employee </h4>
+        <div class="container " style="display:flex;flex-direction:row;">
+
+            <h4 class="m-2">Employee </h4>
+            <?php
+            require '../config/config.php';
+            ?>
+            <a href="<?php echo URL; ?>/employee/" class="btn btn-success m-2">
+                + Add
+            </a>
+        </div>
         <?php
         require '../Database/Database.php';
         require '../models/Employee.php';
