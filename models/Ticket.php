@@ -24,15 +24,13 @@ class Ticket
 
     public function createTicket()
     {
-        $sql = "INSERT INTO {$this->table}(ticket_name, 
-        project_name, ticket_type, ticket_description,
-        ticket_assigned_to, ticket_status, ticket_priority, startDate, endDate) 
-        VALUES(:ticket_name, 
-       :project_name, :ticket_type, :ticket_description,
-        :ticket_assigned_to, :ticket_status, :ticket_priority, :startDate, :endDate)";
+        $sql = "INSERT INTO {$this->table}(ticket_name,  project_name, ticket_type, ticket_description, ticket_assigned_to, ticket_status, ticket_priority, startDate, endDate) 
+        
+        VALUES(:ticket_name, :project_name, :ticket_type, :ticket_description, :ticket_assigned_to, :ticket_status, :ticket_priority, :startDate, :endDate)";
 
 
         $stmt = $this->conn->prepare($sql);
+
         $stmt->bindParam(':ticket_name', $this->ticket_name);
         $stmt->bindParam(':project_name', $this->project_name);
         $stmt->bindParam(':ticket_type', $this->ticket_type);
@@ -44,7 +42,10 @@ class Ticket
         $stmt->bindParam(':endDate', $this->endDate);
 
 
-        $stmt->execute();
+        if ($stmt->execute()) {
+            return true;
+        }
+        return false;
     }
 
     public function readAll()

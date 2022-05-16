@@ -66,4 +66,12 @@ class Employee
         $stmt->bindParam(':e_id', $this->eid);
         $stmt->execute();
     }
+
+    public function getDevs()
+    {
+        $sql = "SELECT * FROM {$this->table} WHERE e_roles ='dev' OR e_roles ='php dev'";
+        $stmt = $this->conn->query($sql);
+        $stmt->execute();
+        return $stmt;
+    }
 }
