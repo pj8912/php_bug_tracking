@@ -4,7 +4,6 @@ class Admin
     public $table1 = "types";
     public $table2 = "statuses";
     public $table3 = "priorities";
-
     public $priority, $status, $type;
     private $conn;
 

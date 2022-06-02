@@ -15,10 +15,20 @@ CREATE TABLE projects(
 
 -- a bug or a ticket
 
-CREATE TABLE tickets( ticket_id int auto_increment primary key not null, ticket_name varchar(200), project_name varchar(200) not null, ticket_type text not null, 
-created_at datetime default current_timestamp,
-updated_at datetime default current_timestamp
--- type: issue, bug, feature_request. ticket_description varchar(300), ticket_assigned_to text not null, ticket_status varchar(200) not null, -- status: resolved, in-progress, new ticket_priority varchar(300), -- priority: immediate, high, low, medium startDate varchar(200), endDate varchar(200), created_at datetime default current_timestamp, updated_at datetime default current_timestamp
+CREATE TABLE tickets( 
+	ticket_id int auto_increment primary key not null, 
+	ticket_name varchar(200), 
+	project_name varchar(200) not null, 
+	ticket_type text not null, 
+	ticket_description text, 
+	ticket_assigned_to text, 
+	ticket_status varchar(100),
+	ticket_priority varchar(100),
+	startDate varchar(200),
+	endDate varchar(200),
+    created_at datetime DEFAULT CURRENT_TIMESTAMP,
+    updated_at datetime DEFAULT CURRENT_TIMESTAMP
+  
 );
 
 CREATE TABLE users(

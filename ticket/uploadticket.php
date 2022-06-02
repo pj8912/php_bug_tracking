@@ -5,8 +5,10 @@ session_start();
 <?php
 require '../Database/Database.php';
 require '../models/Ticket.php';
+
 $database = new Database();
 $db = $database->connect();
+
 $ticket = new Ticket($db);
 
 if (isset($_POST['tbtn'])) {
