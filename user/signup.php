@@ -1,109 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php session_start(); ?>
+<?php
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
 
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-</head>
+require_once  '../vendor/autoload.php';
 
-<body>
-    <div class="contaniner">
+use BugTracking\Database\Database;
+use BugTracking\Models\User;
+use BugTracking\Templates\Template;
 
+$template = new Template();
 
-        <div class="card card-body col-md-4 m-auto col-xs-4 mt-5">
+//header
+$template->main_header('Sign Up');
+?>
 
-            <h4 class="text-center">Bug tracker</h4>
-
-            <p class="mt-1 p-3 h5">Sign Up</p>
-
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-
-                <div class="mb-2">
-                    <input type="text" class="form-control" placeholder="Name" name="name" id="">
-
-                </div>
-                <div class="mb-2">
-                    <input type="email" class="form-control" placeholder="Email Address" name="email" id="">
-
-                </div>
-                <div class="mb-2">
-                    <input type="text" class="form-control" placeholder="mobile" name="mobile" id="">
-
-                </div>
-                <div class="mb-2">
-                    <input type="password" class="form-control" placeholder="Password" name="pwd" id="">
-
-                </div>
-                <div class="d-grid gap-2">
-                    <button type="submit" name="sbtn" class="btn btn-success ">
-                        Sign Up
-                    </button>
-                </div>
-
-
-            </form>
-        </div>
+<div class="container">
+    <div class="bg-white mt-5 card card-body col-md-6 m-auto login-form">
+        <p align="center" class="h1 p-1">BugTracking</p><br>
+        <h4 class="mt-4">SignUp</h4>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <div class="mb-2">
+                <input class="form-control" type="text" name="flname" placeholder="FullName">
+            </div>
+            <div class="mb-2">
+                <input class="form-control" type="email" name="email" placeholder="Email">
+            </div>
+            <div class="mb-2">
+                <input class="form-control" type="password" name="pwd" placeholder="Password">
+            </div>
+            <div class="d-grid gap-2  ">
+                <button type="submit" name="sbtn" class="btn btn-success" align="center">
+                    Sign Up
+                </button>
+            </div>
+            <p class="text-center mt-3">Already have an account <a href="../index.php">Log in</a></p>
+        </form>
     </div>
+</div>
 
-    <?php
-    require '../Database/Database.php';
-    require '../models/User.php';
+<?php
+$template->main_footer();
+?>
 
-
+<?php
+if (isset($_SERVER['REQUEST_METHOD']) == 'POST') {
     if (isset($_POST['sbtn'])) {
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $mobile = $_POST['mobile'];
-        $pwd = $_POST['pwd'];
 
-        if (!ctype_alpha($name)) {
-            header("Location: ../index.php?error=" . $name);
-            exit();
-        }
+        // $_POST = filter_input_array('POST', FILTER_SANITIZE_STRING);
+
+        $name = htmlentities((strip_tags($_POST['flname'])));
+        $email  = strip_tags($_POST['email']);
+        $pwd = strip_tags($_POST['pwd']);
+
+
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             header("Location: ../index.php?error=empty");
             exit();
         } else {
-            $conn = mysqli_connect('localhost', 'root', '', 'php_bug_tracking');
-            $sql = "SELECT * FROM users WHERE email = '$email'";
-            $result = mysqli_query($conn, $sql);
+            $db = new Database();
+            $db = $db->connect();
+            $user = new User($db);
+            $user->email = $email;
 
-            // $db = new Database();
-            // $db  = $db->connect();
-
-            // $u = new User($db);
-            // $u->email = $email;
-            // $result = $u->checkIfUserAlreadyExist();
-            $num = mysqli_num_rows($result);
+            $result = $user->check_user();
+            $num = $result->rowCount();
             if ($num > 0) {
-                header('location: ../index.php?user_exists');
+                header('Location: ../index.php');
                 exit();
             } else {
+                $user->fullname = $name;
                 $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
-                // $u->user_name = $name;
-                // $u->user_mobile = $mobile;
-                // $u->user_pwd = $hashedPwd;
-                $sql = "INSERT INTO users(user_name, user_mobile, email, user_pwd) VALUES('$name', '$mobile', '$email', '$hashedPwd')";
-                $result = mysqli_query($conn, $sql);
-                if($result){
-
-                    header('location: ../index.php');
-                    exit();
-                }
-                else{
-                    die('FUCK');
-                }
+                $user->pwd = $hashedPwd;
+                //create user
+                $user->create_user();
+                header("Location: ../index.php?signup=success");
+                exit();
             }
         }
     }
-
-    ?>
-</body>
-
-</html>
+}
+// else {
+//     header('Location: ../index.php');
+//     exit();
+// }
+?>

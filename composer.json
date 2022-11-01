@@ -1,0 +1,10 @@
+{
+	"autoload":{
+		"psr-4":{
+			"BugTracking\\": "src/"
+		}
+	},
+	"require": {
+		"vlucas/phpdotenv": "^5.4"
+	}
+}

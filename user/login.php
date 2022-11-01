@@ -1,33 +1,45 @@
-<?php
-session_start();
+<?php session_start(); ?>
 
+<?php
+
+require_once '../vendor/autoload.php';
+
+use BugTracking\Database\Database;
+use BugTracking\Models\User;
+
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
+if (isset($_SERVER['REQUEST_METHOD']) == 'POST') {
 
     if (isset($_POST['lbtn'])) {
 
-        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-        $email = $_POST['email'];
+        $email = strip_tags($_POST['email']);
+        $pwd = strip_tags($_POST['pwd']);
 
-        $pwd =  $_POST['pwd'];
-
-   
-        $conn = mysqli_connect('localhost', 'root', '', 'php_bug_tracking');
-
-
-        $sql = "SELECT * FROM users WHERE email = '$email' ";
-
-        $result = mysqli_query($conn, $sql);
-        $num = mysqli_num_rows($result);
-
-        if ($num  < 0) {
-            header('location: ../index.php?uname_err');
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            header("Location: ../index.php?email=invalid");
             exit();
-        } else {
-            while ($row = mysqli_fetch_assoc($result))   {
+        }
 
-                $hashedpwd = $row['user_pwd'];
 
-                $hashedPwdCheck  = password_verify($pwd, $hashedpwd);
+        $database = new Database();
+        $db = $database->connect();
+
+        $user = new User($db);
+
+        $user->email = $email;
+
+        $result = $user->getUser();
+        $num = $result->rowCount();
+
+
+        if ($num >  0) {
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+
+                $hashedPwd = $row['user_pwd'];
+                $hashedPwdCheck = password_verify($pwd, $hashedPwd);
 
                 if ($hashedPwdCheck == false) {
                     header("Location: ../index.php?login=error");
@@ -35,9 +47,15 @@ session_start();
                 } else {
 
                     $_SESSION['u_id'] = $row['user_id'];
-                    header("location: ../index.php");
+                    header('Location: ../index.php');
                     exit();
                 }
             }
+        } else {
+            header('Location: ../index.php');
+            exit();
         }
     }
+} else {
+    echo "REQUEST_METHOD_ERROR";
+}

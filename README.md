@@ -1,2 +1,3 @@
-# php_bug_tracking
-A Bug tracking system built using php and mysql
+# bug-tracking
+Bug tracking system in PHP
+
