@@ -238,10 +238,10 @@ if (isset($_POST['tbtn'])) {
         // if(empty())
 
         $ticket->createTicket();
-        header('location: http://localhost/bug-tracking/ticket/tickets.php');
+        header('location: http://localhost/php_bug_tracking/ticket/tickets.php');
         exit();
         if (!$ticket->createTicket()) {
-                header('location: http://localhost/bug-tracking/');
+                header('location: http://localhost/php_bug_tracking/');
                 exit();
         }
 }

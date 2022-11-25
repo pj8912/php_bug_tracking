@@ -113,6 +113,6 @@ if (isset($_POST['ubtn'])) {
         $res->client_name = $client;
 
         $res->createProject();
-        header('Location: http://localhost/bug-tracking/project/project.php');
+        header('Location: http://localhost/php_bug_tracking/project/project.php');
         exit();
 }

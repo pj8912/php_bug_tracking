@@ -123,7 +123,7 @@ if (isset($_POST['ubtn'])) {
 
 
 	$result->createEmployee();
-	header("Location: http://localhost/bug-tracking/employee/employees.php");
+	header("Location: http://localhost/php_bug_tracking/employee/employees.php");
 	exit();
 }
 

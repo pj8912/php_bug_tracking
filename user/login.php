@@ -47,7 +47,7 @@ if (isset($_SERVER['REQUEST_METHOD']) == 'POST') {
                 } else {
 
                     $_SESSION['u_id'] = $row['user_id'];
-                    header('Location: ../index.php');
+                    header('Location: ../home.php');
                     exit();
                 }
             }
