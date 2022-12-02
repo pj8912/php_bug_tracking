@@ -10,10 +10,13 @@ class Admin
 	public $t3 = "priorities";
 	public $t4 = "users";
 
-	public $priority, $status, $type, $userid;
+	public $priority, $status, $type;
+	public $userid;
 
+	//db connection
 	private $conn;
 
+	//priorityId, statusId, typesId
 	public $pid, $sid, $tid;
 
 	public function __construct($db)
@@ -25,8 +28,10 @@ class Admin
 		$sql = "SELECT user_fullname FROM {$this->t4} WHERE user_id = :user_id";
 		$stmt = $this->conn->prepare($sql);
 		$stmt->bindParam(':user_id', $this->userid);
-		$stmt->execute();
-		return $stmt;
+		if($stmt->execute()){
+			return $stmt;
+		}
+		return false;
 	}
 
 	public function createType()
@@ -35,8 +40,10 @@ class Admin
 		$stmt = $this->conn->prepare($sql);
 		$this->type = strip_tags($this->type);
 		$stmt->bindParam(':ticket_type', $this->type);
-		$stmt->execute();
-		return true;
+		if($stmt->execute()){
+			return true;
+		}
+		return false;
 	}
 
 	public function createStatus()
@@ -44,8 +51,10 @@ class Admin
 		$sql = "INSERT INTO {$this->t2}(ticket_status) VALUES(:ticket_status)";
 		$stmt  = $this->conn->prepare($sql);
 		$stmt->bindParam(':ticket_status', $this->status);
-		$stmt->execute();
-		return true;
+		if($stmt->execute()){
+			return true;
+		}
+		return false;
 	}
 
 	public function createPriority()
@@ -53,7 +62,10 @@ class Admin
 		$sql = "INSERT INTO {$this->t3}(ticket_priority) VALUES(:ticket_priority)";
 		$stmt = $this->conn->prepare($sql);
 		$stmt->bindParam(':ticket_priority', $this->priority);
-		$stmt->execute();
+		if($stmt->execute()){
+			return true;
+		}
+		return false;
 	}
 
 
@@ -61,23 +73,31 @@ class Admin
 	{
 		$sql = "SELECT * FROM {$this->t1}";
 		$stmt = $this->conn->query($sql);
-		$stmt->execute();
-		return $stmt;
+		if($stmt->execute()){
+			return $stmt;
+		}
+		return false;
 	}
 	public function getAllStatues()
 	{
 		$sql = "SELECT * FROM {$this->t2}";
 		$stmt = $this->conn->query($sql);
-		$stmt->execute();
-		return $stmt;
+		if($stmt->execute()){
+			return $stmt;
+		}
+		return false;
 	}
 	public function getAllPriorities()
 	{
 		$sql = "SELECT * FROM {$this->t3}";
 		$stmt = $this->conn->query($sql);
-		$stmt->execute();
-		return $stmt;
+		if($stmt->execute()){
+			return $stmt;
+		}
+		return false;
 	}
+
+
 
 
 	public function deleteType()
@@ -86,7 +106,10 @@ class Admin
 		$stmt = $this->conn->prepare($sql);
 		$this->tid = (int) $this->tid;
 		$stmt->bindParam(':t_id', $this->tid);
-		$stmt->execute();
+		if($stmt->execute()){
+			return true;
+		}
+		return false;
 	}
 	public function deleteStatus()
 	{
@@ -94,8 +117,10 @@ class Admin
 		$stmt = $this->conn->prepare($sql);
 		$this->sid = (int) $this->sid;
 		$stmt->bindParam(':s_id', $this->sid);
-
-		$stmt->execute();
+		if($stmt->execute()){
+			return true;
+		}
+		return false;
 	}
 
 	public function deletePriority()
@@ -104,7 +129,12 @@ class Admin
 		$stmt = $this->conn->prepare($sql);
 		$this->pid = (int) $this->pid;
 		$stmt->bindParam(':p_id', $this->pid);
-
-		$stmt->execute();
+		if($stmt->execute()){
+			return true;
+		}
+		return false;
 	}
 }
+
+
+

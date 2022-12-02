@@ -35,7 +35,7 @@ $template->main_header('Sign Up');
                     Sign Up
                 </button>
             </div>
-            <p class="text-center mt-3">Already have an account <a href="../index.php">Log in</a></p>
+            <p class="text-center mt-3">Already have an account? <a href="../index.php">Log in</a></p>
         </form>
     </div>
 </div>
