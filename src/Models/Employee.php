@@ -69,4 +69,84 @@ class Employee
         $stmt->execute();
         return $stmt;
     }
+
+
+    public function updateEmployee(){
+        $sql = "UPDATE {$this->table }
+        SET
+        e_name = :e_name,
+        e_roles = :e_roles,
+        e_description = :e_description ,
+        e_email  = :e_email,
+        e_phone = :e_phone
+
+        WHERE e_id = :e_id";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':e_name', $this->name);
+        $stmt->bindParam(':e_roles', $this->role);
+        $stmt->bindParam(':e_description', $this->description);
+        $stmt->bindParam(':e_email', $this->email);
+        $stmt->bindParam(':e_phone', $this->phone);
+
+        $stmt->bindParam(':e_id', $this->eid);
+
+        if($stmt->execute()){
+            return true;
+        }
+        return false;        
+    }
+
+    public function getName(){
+
+        $sql = "SELECT e_name FROM {$this->table} WHERE e_id = :e_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':e_id', $this->eid);
+        if($stmt->execute()){
+            return $stmt;
+        }
+        return false;
+    }
+
+    public function getEmail(){
+
+        $sql = "SELECT e_email FROM {$this->table} WHERE e_id = :e_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':e_id', $this->eid);
+        if($stmt->execute()){
+            return $stmt;
+        }
+        return false;
+    }
+    public function getDesc(){
+
+        $sql = "SELECT e_description FROM {$this->table} WHERE e_id = :e_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':e_id', $this->eid);
+        if($stmt->execute()){
+            return $stmt;
+        }
+        return false;
+    }
+
+    public function getPhone(){
+        
+        $sql = "SELECT e_phone FROM {$this->table} WHERE e_id = :e_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':e_id', $this->eid);
+        if($stmt->execute()){
+            return $stmt;
+        }
+        return false;
+    }
+    public function getRoles(){
+
+        $sql = "SELECT e_roles FROM {$this->table} WHERE e_id = :e_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':e_id', $this->eid);
+        if($stmt->execute()){
+            return $stmt;
+        }
+        return false;
+    }
 }
