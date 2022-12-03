@@ -72,7 +72,7 @@ class Project
         $stmt->bindParam(':project_title', $this->project_title);
         $stmt->bindParam(':type', $this->type);
         $stmt->bindParam(':manager', $this->manager);
-        $stmt->bindParam(':clien_name', $this->client_name);
+        $stmt->bindParam(':client_name', $this->client_name);
         $stmt->bindParam(':front_end', $this->frontend);
         $stmt->bindParam(':backend', $this->backend);
         $stmt->bindParam(':description', $this->description);
@@ -114,7 +114,7 @@ class Project
         return $stmt;
     }
 
-    public function getProjectNameById()
+    public function getProjectName()
     {
         $sql = "SELECT project_title FROM {$this->table} where project_id = :project_id";
         $stmt = $this->conn->prepare($sql);
