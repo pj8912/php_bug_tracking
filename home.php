@@ -87,10 +87,13 @@ if (isset($_SESSION['u_id'])) {
 
 	echo '</div>';
 
-	$template->main_footer();
+
 }
 ?>
+<?php
 
+$template->main_footer();
+?>
 
 
 
